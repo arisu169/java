@@ -1,0 +1,30 @@
+//11)Hello servlet
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class Hello extends HttpServlet {
+
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse res)
+            throws ServletException, IOException {
+
+        res.setContentType("text/html");
+        PrintWriter pw = res.getWriter();
+        pw.println("Hell world");
+    }
+}
+
+//web.xml
+<web-app>
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>Hello</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/Hello</url-pattern>
+    </servlet-mapping>
+</web-app>
