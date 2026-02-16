@@ -1,0 +1,29 @@
+//8)callable statement
+
+import java.sql.*;
+class j8{
+    public static void main(String args[]) {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521:xe","system","password"
+            );
+            Statement st=con.createStatement();
+            st.executeUpdate("create table stud(rno number, name varchar2(20))");
+            CallableStatement cs=con.prepareCall("{call stud(?,?)}");
+            cs.setInt(1, 101);
+            cs.setString(2, "Alice");
+            cs.execute();
+}catch(Exception e){
+e.printStackTrace();
+}}}
+
+SQL PROCEDURE CREATION:
+
+CREATE OR REPLACE PROCEDURE stud
+(rno NUMBER, name VARCHAR2)
+AS
+BEGIN
+   INSERT INTO stud VALUES (rno, name);
+END;
+/
