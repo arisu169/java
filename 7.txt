@@ -1,0 +1,22 @@
+//7)Prepared Statement
+
+import java.sql.*;
+class j7 {
+    public static void main(String args[]) {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521:xe","system","password"
+            );
+            Statement st = con.createStatement();
+            st.executeUpdate("create table stud(rno number, name varchar2(20))");
+            PreparedStatement ps = con.prepareStatement("insert into stud values(?, ?)");
+            ps.setInt(1, 101); 
+            ps.setString(2, "Alice");
+            ps.executeUpdate();
+            System.out.println("Record inserted successfully using PreparedStatement!");
+            ps.close();
+            con.close();
+}catch(Exception e){
+e.printStackTrace();
+}}}
