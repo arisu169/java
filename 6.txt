@@ -1,0 +1,23 @@
+//6)JDBC program to read data from database using result set
+
+import java.sql.*;
+class j6{
+    public static void main(String args[]) {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521:xe","system","password"
+            );
+            Statement st=con.createStatement();
+            st.executeUpdate("create table stud(rno number, name varchar2(20))");
+            st.executeUpdate("insert into stud values(101, 'Alice')");
+            ResultSet rs=st.executeQuery("select * from stud");
+            while(rs.next()) {
+                System.out.println(rs.getInt(1));
+                System.out.println(rs.getString(2));
+            }
+            st.close();
+            con.close();
+}catch(Exception e){
+e.printStackTrace();
+}}}
