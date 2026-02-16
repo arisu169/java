@@ -1,0 +1,22 @@
+//5)JDBC program to delete records from database
+
+import java.sql.*;
+class j5 {
+    public static void main(String args[]) {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection(
+            "jdbc:oracle:thin:@localhost:1521:xe","system","password"
+            );
+            Statement st=con.createStatement();
+            st.executeUpdate("create table stud(rno number, name varchar2(20))");
+            System.out.println("Table created successfully!");
+            st.executeUpdate("insert into stud values(101, 'Alice')");
+            System.out.println("Record inserted successfully!");
+            st.executeUpdate("delete from stud where rno=101");
+            System.out.println("Record deleted successfully!");
+            st.close();
+            con.close();
+}catch (Exception e) {
+e.printStackTrace();
+}}}
