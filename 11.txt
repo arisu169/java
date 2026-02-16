@@ -17,14 +17,12 @@ public class Hello extends HttpServlet {
 }
 
 //web.xml
-<web-app>
-    <servlet>
-        <servlet-name>Hello</servlet-name>
-        <servlet-class>Hello</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Hello</servlet-name>
-        <url-pattern>/Hello</url-pattern>
-    </servlet-mapping>
+<web-app><servlet>
+<servlet-name>Hello</servlet-name>
+<servlet-class>Hello</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>Hello</servlet-name>
+<url-pattern>/Hello</url-pattern>
+</servlet-mapping>
 </web-app>
