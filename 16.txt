@@ -1,0 +1,19 @@
+//16 jsp scripting elements
+<html><head></head>
+<%@ page import="java.util.Date" %>
+<body>
+<%!
+int a = 5, b = 6;
+int sum = a + b;
+
+int add() {
+return sum;
+}
+%>
+
+<% Date ob = new Date(); %>
+
+<%= "a+b = " + add() %><br>
+<%= "Today's Date = " + ob %>
+</body>
+</html>
