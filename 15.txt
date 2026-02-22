@@ -1,0 +1,68 @@
+//Suml.html
+<html><body>
+<form action="SerReqFwd" method="post">
+Value of A: <input type="text" name="a1" required><br>
+Value of B: <input type="text" name="b1" required><br>
+<input type="submit" value="add">
+</form>
+</body></html>
+
+//web.xml
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee">
+<servlet>
+<servlet-name>SerReqFwd</servlet-name>
+<servlet-class>SerReqFwd</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>SerReqFwd</servlet-name>
+<url-pattern>/SerReqFwd</url-pattern>
+</servlet-mapping>
+<servlet>
+<servlet-name>Servlet2</servlet-name>
+<servlet-class>Servlet2</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>Servlet2</servlet-name>
+<url-pattern>/Servlet2</url-pattern>
+</servlet-mapping></web-app>
+
+//SerReqFwd.java
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import java.io.*;
+
+public class SerReqFwd extends HttpServlet {
+
+public void doPost(HttpServletRequest req, HttpServletResponse res)
+throws ServletException, IOException {
+
+res.setContentType("text/html");
+PrintWriter pw = res.getWriter();
+
+String a = req.getParameter("a1");
+String b = req.getParameter("b1");
+
+int no1 = Integer.parseInt(a);
+int no2 = Integer.parseInt(b);
+
+int sum = no1 + no2;
+
+req.setAttribute("sum", sum);
+
+RequestDispatcher rd = req.getRequestDispatcher("/Servlet2");
+rd.forward(req, res);
+}}
+
+//Servlet2.java
+import java.io.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+
+public class Servlet2 extends HttpServlet {
+public void doPost(HttpServletRequest req, HttpServletResponse res)
+throws ServletException, IOException {
+int c = (int) req.getAttribute("sum");
+c = c * c;
+PrintWriter pw = res.getWriter();
+pw.println("result = " + c);
+}}
