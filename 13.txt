@@ -1,0 +1,35 @@
+//13) Sessions program
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.Date;
+
+public class DemoSession extends HttpServlet {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("username", "Bhavans session");
+        String username = (String) session.getAttribute("username");
+
+PrintWriter pw=response.getWriter();
+pw.println("<html><body>");
+ pw.println("Welcome " + username+"<br/><br/>");
+pw.println("Session ID: <b>" + session + "</b>"+"<br/><br/>");
+pw.println( "your Session Creation Time: " +"<b>" +new Date(session.getCreationTime()) +"</b><br/><br/>");
+
+pw.println("your Last Accessed Time: " +"<b>" + new Date(session.getLastAccessedTime()) +"</b>");
+pw.println("</body></html>");
+        session.invalidate(); }}
+
+//web.xml
+<web-app><servlet>
+    <servlet-name>DemoSession</servlet-name>
+    <servlet-class>DemoSession</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>DemoSession</servlet-name>
+    <url-pattern>/demosession</url-pattern>
+</servlet-mapping>
+</web-app>
