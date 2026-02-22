@@ -11,8 +11,7 @@ public class setcookie extends HttpServlet {
         response.addCookie(cookie);
         PrintWriter out = response.getWriter();
         out.println("Cookie has been set!");
-    }
-}
+}}
 
 //web.xml
 <web-app><servlet>
