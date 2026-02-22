@@ -10,7 +10,7 @@ Value of B: <input type="text" name="b1" required><br>
 </body></html>
 
 //web.xml
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee">
+<web-app>
 <servlet>
 <servlet-name>SerReqFwd</servlet-name>
 <servlet-class>SerReqFwd</servlet-class>
@@ -26,7 +26,8 @@ Value of B: <input type="text" name="b1" required><br>
 <servlet-mapping>
 <servlet-name>Servlet2</servlet-name>
 <url-pattern>/Servlet2</url-pattern>
-</servlet-mapping></web-app>
+</servlet-mapping>
+</web-app>
 
 //SerReqFwd.java
 import javax.servlet.*;
