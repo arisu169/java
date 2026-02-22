@@ -27,8 +27,8 @@ Value of B: <input type="text" name="b1" required><br>
 </servlet-mapping></web-app>
 
 //SerReqFwd.java
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 import java.io.*;
 
 public class SerReqFwd extends HttpServlet {
@@ -55,8 +55,8 @@ rd.forward(req, res);
 
 //Servlet2.java
 import java.io.*;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
 
 public class Servlet2 extends HttpServlet {
 public void doPost(HttpServletRequest req, HttpServletResponse res)
