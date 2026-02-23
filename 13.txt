@@ -1,26 +1,25 @@
 //13) Sessions program
 import java.io.*;
+import java.util.Date;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import java.util.Date;
 
 public class DemoSession extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-        session.setAttribute("username", "Bhavans session");
-        String username = (String) session.getAttribute("username");
+        HttpSession session = req.getSession();
 
-PrintWriter pw=response.getWriter();
-pw.println("<html><body>");
- pw.println("Welcome " + username+"<br/><br/>");
-pw.println("Session ID: <b>" + session + "</b>"+"<br/><br/>");
-pw.println( "your Session Creation Time: " +"<b>" +new Date(session.getCreationTime()) +"</b><br/><br/>");
+        res.setContentType("text/html");
+        PrintWriter pw = res.getWriter();
 
-pw.println("your Last Accessed Time: " +"<b>" + new Date(session.getLastAccessedTime()) +"</b>");
-pw.println("</body></html>");
-        session.invalidate(); }}
+        pw.println("Welcome arisu");
+        pw.println("Session ID: " + session.getId());
+        pw.println("Creation Time: " + new Date(session.getCreationTime()));
+        pw.println("Last Accessed Time: " + new Date(session.getLastAccessedTime()));
+    }
+}
 
 //web.xml
 <web-app><servlet>
@@ -30,6 +29,6 @@ pw.println("</body></html>");
 
 <servlet-mapping>
     <servlet-name>DemoSession</servlet-name>
-    <url-pattern>/demosession</url-pattern>
+    <url-pattern>/DemoSession</url-pattern>
 </servlet-mapping>
 </web-app>
