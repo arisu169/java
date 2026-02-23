@@ -5,15 +5,11 @@
 <%!
 int a = 5, b = 6;
 int sum = a + b;
-
-int add() {
-return sum;
-}
 %>
 
 <% Date ob = new Date(); %>
 
-<%= "a+b = " + add() %><br>
+<%= "a+b = " + sum %>
 <%= "Today's Date = " + ob %>
 </body>
 </html>
