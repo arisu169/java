@@ -1,0 +1,59 @@
+//19) Develop simple application to process the registration form using JSP and JDBC.
+
+//Registration.jsp
+<%@ page import="java.sql.*" %>
+<%
+String name = request.getParameter("name");
+String email = request.getParameter("email");
+String password = request.getParameter("password");
+
+String url = "jdbc:oracle:thin:@localhost:1521:xe";
+String user = "system";
+String pass = "password";
+
+try {
+    Class.forName("oracle.jdbc.driver.OracleDriver");
+    Connection con = DriverManager.getConnection(url, user, pass);
+
+    String sql = "INSERT INTO student(name, email, password) VALUES (?, ?, ?)";
+    PreparedStatement ps = con.prepareStatement(sql);
+
+    ps.setString(1, name);
+    ps.setString(2, email);
+    ps.setString(3, password);
+
+    int result = ps.executeUpdate();
+
+if (result > 0) {
+%>
+        <h3>Registration Successful!</h3>
+<%
+} else {
+%>
+        <h3>Registration Failed!</h3>
+<%
+    }
+ps.close();
+con.close();
+} catch (Exception e) {
+    out.println(e);
+}
+%>
+
+//register.html
+<html>
+<head></head>
+<body>
+<h2>User Registration</h2>
+<form action="Registration.jsp" method="post">
+<p>
+Name:<input type="text" name="name" required>
+</p>
+<p>
+Email:<input type="text" name="email" required>
+</p>
+<p>
+Password:<input type="password" name="password" required>
+</p>
+<input type="submit" value="Register">
+</form></body></html>
