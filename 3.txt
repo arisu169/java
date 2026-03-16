@@ -1,4 +1,4 @@
-//JDBC program to insert record into database
+//3)JDBC program to insert record into database
 
 import java.sql.*;
 class j3 {
