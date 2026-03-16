@@ -11,9 +11,10 @@ String url = "jdbc:oracle:thin:@localhost:1521:xe";
 String user = "system";
 String pass = "password";
 
-try {
-    Class.forName("oracle.jdbc.driver.OracleDriver");
-    Connection con = DriverManager.getConnection(url, user, pass);
+try{
+Class.forName("oracle.jdbc.driver.OracleDriver");
+Connection con=DriverManager.getConnection(
+"jdbc:oracle:thin:@localhost:1521:xe","system","password");
 
     String sql = "INSERT INTO student(name, email, password) VALUES (?, ?, ?)";
     PreparedStatement ps = con.prepareStatement(sql);
