@@ -3,41 +3,35 @@
 //Registration.jsp
 <%@ page import="java.sql.*" %>
 <%
-String name = request.getParameter("name");
-String email = request.getParameter("email");
-String password = request.getParameter("password");
-
-String url = "jdbc:oracle:thin:@localhost:1521:xe";
-String user = "system";
-String pass = "password";
+String name=request.getParameter("name");
+String email=request.getParameter("email");
+String password=request.getParameter("password");
 
 try{
 Class.forName("oracle.jdbc.driver.OracleDriver");
 Connection con=DriverManager.getConnection(
 "jdbc:oracle:thin:@localhost:1521:xe","system","password");
 
-    String sql = "INSERT INTO student(name, email, password) VALUES (?, ?, ?)";
-    PreparedStatement ps = con.prepareStatement(sql);
+PreparedStatement ps=con.prepareStatement("insert into student values(?,?,?)");
+ps.setString(1,name);
+ps.setString(2,email);
+ps.setString(3,password);
 
-    ps.setString(1, name);
-    ps.setString(2, email);
-    ps.setString(3, password);
+int result=ps.executeUpdate();
 
-    int result = ps.executeUpdate();
-
-if (result > 0) {
+if(result>0){
 %>
-        <h3>Registration Successful!</h3>
+<h3>Registration Successful!</h3>
 <%
-} else {
+}else{
 %>
-        <h3>Registration Failed!</h3>
+<h3>Registration Failed!</h3>
 <%
-    }
-ps.close();
+}
+
 con.close();
-} catch (Exception e) {
-    out.println(e);
+}catch(Exception e){
+ out.println(e); 
 }
 %>
 
